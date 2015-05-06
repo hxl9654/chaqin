@@ -24,7 +24,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>提交中</title>
 
-    //获取URL中的参数（用于记住密码）
+    <!--获取URL中的参数（用于记住密码）-->
     <script type="text/javascript">
     function $G(){
         var Url=window.location.href;//如果想获取框架顶部的url可以用 top.window.location.href
@@ -51,7 +51,7 @@
     }
     </script>
 
-//获取pass参数（即上次使用的密码）
+<!--获取pass参数（即上次使用的密码）-->
 <script type="text/javascript"> var pass=$G("pass"); </script>
 </head>
 
