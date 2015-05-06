@@ -20,12 +20,31 @@
 -->
 <?php
 //清空密码数据库
-$sql="TRUNCATE TABLE pass";
-mysql_query($sql,$con);
-$sql="INSERT INTO pass (pass, username) VALUES(AdminPass1,' ')";
-mysql_query($sql,$con);
-$sql="INSERT INTO pass (pass, username) VALUES(AdminPass2,' ')";
-mysql_query($sql,$con);
+
+//判断pass数据表是否存在
+$result = mysql_query("select * from data limit 1");
+//存在:清空数据表
+if(mysql_fetch_array($result) != "")
+{
+    $sql="TRUNCATE TABLE pass";
+    mysql_query($sql, $con);
+}
+//不存在：新建pass数据表
+else 
+{   
+    $sql = "CREATE TABLE data
+    (
+    id int auto_increment primary key,
+    text pass,
+    text username
+    )";
+    mysql_query($sql, $con);
+}
+
+$sql = "INSERT INTO pass (pass, username) VALUES('" + AdminPass1 + "', ' ')";
+mysql_query($sql, $con);
+$sql = "INSERT INTO pass (pass, username) VALUES('" + AdminPass2 + "', ' ')";
+mysql_query($sql, $con);
 
 //搞定:提示，返回
 mysql_close($con);
