@@ -33,12 +33,14 @@ function generate_password($length)
     }
     return $password;
 }
+//获取传入的用户名
+$username = $_REQUEST[inf];
 //判断输入的用户名是否已经存在，是：提示，返回
-$result = mysql_query("select * from pass where username = '$_REQUEST[inf]' limit 1");
+$result = mysql_query("select * from pass where username = '$username' limit 1");
 if(mysql_fetch_array($result) != "")
 {
     mysql_close($con);
-     exit( "
+    exit( "
      <script language=javascript>
      alert('用户名重复。');
      window.location.href='admin.html';
@@ -50,8 +52,6 @@ do
         $passwords = generate_password(8);
         $result = mysql_query("select * from pass where pass = '$passwords' limit 1");
     }while(mysql_fetch_array($result)!="");
-//获取传入的用户名
-$username = $_REQUEST[inf];
 //添加用户
 $sql = "INSERT INTO pass (pass, username) VALUES('$passwords','$username')";
 mysql_query($sql,$con);
