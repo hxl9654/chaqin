@@ -21,15 +21,15 @@
 <?php
 //判断是否有真正进行的查寝（data数据库是否存在），如果有：报错，返回
 $result = mysql_query("select * from data limit 1");
-    if(mysql_fetch_array($result) != "")
-    {
-        mysql_close($con);
-        exit( "
-         <script language=javascript>
-         alert('上次查寝未结束或本次查寝数据库已生成');
-         window.location.href='admin.html';
-         </script> ");
-    }
+if(mysql_fetch_array($result) != "")
+{
+    mysql_close($con);
+    exit( "
+     <script language=javascript>
+     alert('上次查寝未结束或本次查寝数据库已生成');
+     window.location.href='admin.html';
+     </script> ");
+}
 //在数据库中创建本次查寝的数据表（data）
 /*
     id int auto_increment primary key   //自增主键

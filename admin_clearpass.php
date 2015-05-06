@@ -21,8 +21,8 @@
 <?php
 //清空密码数据库
 //判断pass数据表是否存在
-$result = mysql_query("select * from pass limit 1");
-//存在:清空数据表
+$result = mysql_query("select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_NAME='pass' ;");
+//存在：清空pass表
 if(mysql_fetch_array($result) != "")
 {
     $sql="TRUNCATE TABLE pass";
@@ -34,8 +34,8 @@ else
     $sql = "CREATE TABLE pass
     (
     id int auto_increment primary key,
-    text pass,
-    text username
+    pass text,
+    username text
     )";
     mysql_query($sql, $con);
 }

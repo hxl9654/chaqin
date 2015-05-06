@@ -71,15 +71,15 @@ include 'getip.php';
 require 'database.php';
 //判断当前是否正在进行查寝（data数据库是否存在），否；提示，转到管理界面
 $result = mysql_query("select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_NAME='data' ;");
-	if(mysql_fetch_array($result) == "")
-    {
-        mysql_close($con);
-		exit("
-		 <script language=javascript>
-		 alert('本次查寝未开始，请联系管理员');
-		 window.location.href='admin.html';
-		 </script> ");
-    }
+if(mysql_fetch_array($result) == "")
+{
+    mysql_close($con);
+    exit("
+     <script language=javascript>
+     alert('本次查寝未开始，请联系管理员');
+     window.location.href='admin.html';
+     </script> ");
+}
 //验证密码，错误：提示，返回
 $result = mysql_query("select pass from pass where pass = '$_REQUEST[pass]' limit 1");
 if(mysql_fetch_array($result) == "")

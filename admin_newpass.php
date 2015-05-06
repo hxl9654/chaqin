@@ -34,17 +34,18 @@ function generate_password($length)
     return $password;
 }
 //判断pass数据表是否存在,不存在：新建pass数据表
-$result = mysql_query("select * from pass limit 1");
+$result = mysql_query("select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_NAME='pass' ;");
 if(mysql_fetch_array($result) == "")
 {
     $sql = "CREATE TABLE pass
     (
     id int auto_increment primary key,
-    text pass,
-    text username
+    pass text,
+    username text
     )";
     mysql_query($sql, $con);
 }
+mysql_query($sql, $con);
 //获取传入的用户名
 $username = $_REQUEST[inf];
 //判断输入的用户名是否已经存在，是：提示，返回
