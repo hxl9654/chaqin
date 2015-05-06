@@ -20,7 +20,7 @@
 -->
 <?php
 //判断当前是否在进行查寝（data数据表是否存在）
-$result = mysql_query("select * from data limit 1");
+$result = mysql_query("select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_NAME='data' ;");
 if(mysql_fetch_array($result) == "")
 {
     mysql_close($con);

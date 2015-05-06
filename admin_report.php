@@ -30,16 +30,16 @@ if($_REQUEST['inf'] == "")
          </script> ");
 }
 //如果要查询的数据库名不存在：提示，返回
-$result = mysql_query("select * from db$_REQUEST[inf] limit 1");
-    if(mysql_fetch_array($result) == "")
-    {
-        mysql_close($con);
-        exit( "
-         <script language=javascript>
-         alert('没有找到这个数据库');
-         window.location.href='admin.html';
-         </script> ");
-    }
+$result = mysql_query("select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_NAME='db$_REQUEST[inf]' ;");
+if(mysql_fetch_array($result) == "")
+{
+    mysql_close($con);
+    exit( "
+     <script language=javascript>
+     alert('没有找到这个数据库');
+     window.location.href='admin.html';
+     </script> ");
+}
 //定义各学院对应的代码 （1为信安院，2为光电院，以此类推）
 $depname = array("","信息安全工程学院","光电技术学院","外国语学院","大气科学学院","应用数学学院","控制工程学院","电子工程学院","计算机学院","资源环境学院","通信工程学院","软件工程学院");
 //定义等级代码（1为优秀，2为良好，以此类推）

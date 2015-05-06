@@ -20,7 +20,7 @@
 -->
 <?php
 //判断是否有真正进行的查寝（data数据库是否存在），如果有：报错，返回
-$result = mysql_query("select * from data limit 1");
+$result = mysql_query("select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_NAME='data' ;");
 if(mysql_fetch_array($result) != "")
 {
     mysql_close($con);

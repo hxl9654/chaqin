@@ -40,16 +40,17 @@ if($dbname != "")
     $result = mysql_query("SELECT * FROM db$dbname WHERE no = '$_REQUEST[no]' ");
 //如果没有指定数据库，默认选择当前正在进行查寝的数据库
 else
-    $result = mysql_query("SELECT * FROM data WHERE no = '$_REQUEST[no]' ");
-//查询记录
-$row = mysql_fetch_array($result);
-//如果没有记录，则查询上次查寝的数据
-if($row == "")
-	{
-		$result = mysql_query("SELECT * FROM lastdata WHERE no = '$_REQUEST[no]' ");
-		$row = mysql_fetch_array($result);
-        //如果还是没有数据，提示，返回。
-		if($row == "")
+{
+    $result = mysql_query("select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_NAME='data' ;");
+    if(mysql_fetch_array($result) != "")
+        $result = mysql_query("SELECT * FROM data WHERE no = '$_REQUEST[no]' ");
+    else 
+    {
+        $result = mysql_query("select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_NAME='lastdata' ;");
+        //如果没有记录，则查询上次查寝的数据
+        if(mysql_fetch_array($result) != "")
+            $result = mysql_query("SELECT * FROM lastdata WHERE no = '$_REQUEST[no]' ");
+        else 
         {
             mysql_close($con);
             exit( "
@@ -58,7 +59,19 @@ if($row == "")
              window.location.href='lookup.html';
              </script> ");
         }
-	}
+    }
+}
+$row = mysql_fetch_array($result);
+//如果还是没有数据，提示，返回。
+if($row == "")
+{
+    mysql_close($con);
+    exit( "
+     <script language=javascript>
+     alert('暂无该寝室记录。');
+     window.location.href='lookup.html';
+     </script> ");
+}
 //如果寝室查寝时无人，提示，返回
 if($row['rank'] == 5)
 {
