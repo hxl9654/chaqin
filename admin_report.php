@@ -140,6 +140,8 @@ while($i <= 12)
     }
     $i = $i + 1;
 }
-echo "</table><br/>";
-
 ?>
+<tr><td colspan='10' align='center'><small>
+    本程序由<a href="https://echoiot.com">易控实验室</a>,<a href="https://tec.hxlxz.com">何相龙</a>提供。复制、修改请遵循<a href="http://www.gnu.org/licenses/">GPL许可证</a>。
+</small></td></tr>
+</table><br/>
