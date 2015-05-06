@@ -29,7 +29,7 @@
 <a href="index.html">返回首页</a>
 <br/>
 <?php
-include 'config.php';
+require 'config.php';
 //屏蔽部分错误信息
 error_reporting(E_ALL ^ E_DEPRECATED ^ E_NOTICE);
 //如果没有选择要进行的操作：报错，返回
@@ -46,38 +46,39 @@ if($_REQUEST['pass'] != AdminPassword1 && $_REQUEST['pass'] != AdminPassword2)
 			 alert('密码错误');
 			 window.location.href='admin.html';
 			 </script> ");
-//连接数据库
-include 'database.php';
-
 //解决变量未定义报错
 function _rowget($str, $row){
     $val = !empty($row[$str]) ? $row[$str] : null;
     return $val;
 }
+
+//连接数据库
+require 'database.php';
+
 //如果选择的是查寝开始
 if($_REQUEST['todo'] == 1)
 {
-    include 'admin_start.php';
+    require 'admin_start.php';
 }
 //如果选择的是查寝结束
 else if($_REQUEST['todo'] == 2)
 {
-    include 'admin_stop.php';
+    require 'admin_stop.php';
 }
 //如果选择的是生成报告
 else if($_REQUEST['todo'] == 3)
 {
-    include 'admin_report.php';
+    require 'admin_report.php';
 }
 //如果选择生成密码
 else if($_REQUEST['todo'] == 4)
 {
-    include 'admin_newpass.php';
+    require 'admin_newpass.php';
 }
 //如果选择的是清空密码
 else if($_REQUEST['todo'] == 5)
 {
-    include 'admin_clearpass.php';
+    require 'admin_clearpass.php';
 }
 else mysql_close($con);
 ?>

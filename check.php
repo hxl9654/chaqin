@@ -68,7 +68,7 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_NOTICE);
 //导入获取ip函数
 include 'getip.php';
 //连接数据库
-include 'database.php';
+require 'database.php';
 //判断当前是否正在进行查寝（data数据库是否存在），否；提示，转到管理界面
 $result = mysql_query("select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_NAME='data' ;");
 	if(mysql_fetch_array($result) == "")

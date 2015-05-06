@@ -32,7 +32,7 @@
 //屏蔽部分错误信息
 error_reporting(E_ALL ^ E_DEPRECATED ^ E_NOTICE);
 //连接数据库
-include 'database.php';
+require 'database.php';
 //获取要重新的数据库名（就是查寝时间）
 $dbname = $_REQUEST['db'];
 //如果指定了数据库，选中
