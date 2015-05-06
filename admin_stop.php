@@ -58,7 +58,7 @@ mysql_query($sql, $con);
 mysql_query("CREATE TABLE lastdata SELECT * FROM data");
 mysql_query($sql, $con);
 //将这次的查寝数据（data表）存档到用户自定义的数据表（推荐以日期作为表名）
-mysql_query("RENAME TABLE '" + DBName + "'.'data'  TO '" + DBName + "'.`db$_REQUEST[inf]` ");
+mysql_query("RENAME TABLE data TO db$_REQUEST[inf]");
 mysql_query($sql, $con);
 //搞定：提示，返回主界面
 mysql_close($con);
