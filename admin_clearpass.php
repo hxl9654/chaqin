@@ -39,10 +39,9 @@ else
     )";
     mysql_query($sql, $con);
 }
-
-$sql = "INSERT INTO pass (pass, username) VALUES('" + AdminPass1 + "', ' ')";
+$sql = "INSERT INTO pass (pass, username) VALUES('$AdminPass1',' ')";
 mysql_query($sql, $con);
-$sql = "INSERT INTO pass (pass, username) VALUES('" + AdminPass2 + "', ' ')";
+$sql = "INSERT INTO pass (pass, username) VALUES('$AdminPass2',' ')";
 mysql_query($sql, $con);
 
 //搞定:提示，返回

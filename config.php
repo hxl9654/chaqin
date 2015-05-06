@@ -28,7 +28,7 @@ if (!defined('CHAQIN_CONFIG'))
   define("DBPasswordd", "Your DataBase UserPssword");
   define("AdminPassword1", "Set Your AdminPassword 1");
   define("AdminPassword2", "Set Your AdminPassword 2");
-  define("AdminPass1", "Set Your AdminDataPassword 1");
-  define("AdminPass2", "Set Your AdminDataPassword 2");
+  $AdminPass1="Set Your AdminDataPassword 1";
+  $AdminPass2="Set Your AdminDataPassword 2";
 }
 ?>
