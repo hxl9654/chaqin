@@ -14,3 +14,8 @@ text pass  <br/>
 text     no     寝室号  <br/>
 int(2)   dep    学院代码  <br/>
 数据表须有各寝室对应学院的数据  <br/>
+
+## 本人博客上的相关文章
+<a href="https://tec.hxlxz.com/p=437---2015-05-06" target="_blank">重新架构了之前的查寝系统</a><br/>
+<a href="https://tec.hxlxz.com/p=354---2015-04-15" target="_blank">查寝系统搭建完毕</a><br/>
+<a href="https://tec.hxlxz.com/" target="_blank">本人博客首页</a><br/>
