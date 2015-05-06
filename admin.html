@@ -1,0 +1,78 @@
+<!--
+ *   This program is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author     Xianglong He
+ * @copyright  Copyright (c) 2015 Xianglong He. (http://tec.hxlxz.com)
+ * @license    http://www.gnu.org/licenses/     GPL v3
+ * @version    1.0
+ * @discribe   查寝系统界面
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>学生会查寝系统-管理</title>
+</head>
+
+<body>
+<a href="index.html">返回首页</a>
+<br/>
+<form action="admin.php" method="get">
+<table>
+	<tr>
+		<td>
+        	管理密码&nbsp;&nbsp;&nbsp;&nbsp;
+        	<input name='pass' type='password' size='35' maxlength='35' />
+        </td>
+    </tr>
+    <tr>
+		<td>
+        	参数 &nbsp;&nbsp;
+        	<input name='inf' type='text' size='40' maxlength='40' />
+        </td>
+    </tr>
+    <tr align="center">
+		<td>
+        	查寝开始<input type="radio" name="todo" value="1" />
+            &nbsp;&nbsp;查寝结束<input type="radio" name="todo" value="2" />
+            &nbsp;&nbsp;生成报告<input type="radio" name="todo" value="3" />
+        </td>
+    </tr>
+    <tr align="center">
+		<td>
+            &nbsp;&nbsp;生成密码<input type="radio" name="todo" value="4" />
+            &nbsp;&nbsp;清空密码<input type="radio" name="todo" value="5" />
+        </td>
+    </tr>
+    <tr>
+    	<td align="center">
+        	<input type="submit" value="提交" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="reset" value="重置" />
+        </td>
+     </tr>
+     <tr>
+    	<td>
+            选择“查寝开始”和“清空密码”时，参数栏请留空<br/>
+            选择"查寝结束"时，参数栏请填写本次查寝日期<br/>
+            选择"生成报告"时，参数栏请填写要导出查寝的日期<br/>
+            选择“生成密码”时，参数栏请填写密码使用者的简称<br/>
+     		注：查寝日期格式如"20150101" "20141212"<br/>
+            “清空密码”和“生成密码”都是指数据录入使用的密码
+          </td>
+     </tr>
+</table>
+<small>Power By <a href="https://echoiot.com">Echo</a>,<a href="https://tec.hxlxz.com">hxl</a></small>
+</body>
+</html>

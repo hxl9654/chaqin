@@ -1,0 +1,219 @@
+<!--
+ *   This program is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author     Xianglong He
+ * @copyright  Copyright (c) 2015 Xianglong He. (http://tec.hxlxz.com)
+ * @license    http://www.gnu.org/licenses/     GPL v3
+ * @version    1.0
+ * @discribe   查寝系统数据录入界面
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>学生会查寝系统-beta 1.0</title>
+    <script type="text/javascript">
+    function $G(){
+    var Url=window.location.href;//如果想获取框架顶部的url可以用 top.window.location.href
+    var u,g,StrBack='';
+    if(arguments[arguments.length-1]=="#")
+       u=Url.split("#");
+    else
+       u=Url.split("?");
+    if (u.length==1) g='';
+    else g=u[1];
+
+    if(g!=''){
+       gg=g.split("&");
+       var MaxI=gg.length;
+       str = arguments[0]+"=";
+       for(xm=0;xm<MaxI;xm++){
+          if(gg[xm].indexOf(str)==0) {
+            StrBack=gg[xm].replace(str,"");
+            break;
+          }
+       }
+    }
+    return StrBack;
+    }
+    </script>
+</head>
+
+<body>
+<a href="index.html">返回首页</a>
+<br/>
+<script type="text/javascript"> var pass=$G("pass"); </script>
+<form action="check.php" method="get">
+<table frame="border" rules="all">
+	<tr>
+		<td>
+			请输入操作密码（只需输入一次）：
+		</td>
+		<td>
+        	<script type="text/javascript">
+			if(pass !="")
+        	document.write("<input name='pass' type='password' size='10' maxlength='10' value=" + pass + " />")
+			else document.write("<input name='pass' type='password' size='10' maxlength='10' />")
+			</script>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			寝室号（如 1-1001，12-6012）
+		</td>
+		<td>
+			<input name="no" type="text" size="10" maxlength="7" />
+		</td>
+	</tr>
+	<tr>
+		<td align="center" colspan="2">
+			基础项
+		</td>
+	</tr>
+	<tr>
+		<td width="70%">
+        	床铺整理过，未堆放过多杂物
+        </td>
+        <td width="30%">
+        	是<input type="radio" name="bed" value="1" checked/>
+            &nbsp;&nbsp;否<input type="radio" name="bed" value="0"/>
+        </td>
+     </tr>
+     	<tr>
+		<td width="70%">
+        	垃圾桶内垃圾未达到一半容量
+        </td>
+        <td width="30%">
+        	是<input type="radio" name="bin" value="1" checked/>
+            &nbsp;&nbsp;否<input type="radio" name="bin" value="0"/>
+        </td>
+     </tr>
+     	<tr>
+		<td width="70%">
+        	地面无垃圾、纸屑
+        </td>
+        <td width="30%">
+        	是<input type="radio" name="floor" value="1" checked/>
+            &nbsp;&nbsp;否<input type="radio" name="floor" value="0"/>
+        </td>
+     </tr>
+     	<tr>
+		<td width="70%">
+        	室内无异味，门口无垃圾
+        </td>
+        <td width="30%">
+        	是<input type="radio" name="smell" value="1" checked/>
+            &nbsp;&nbsp;否<input type="radio" name="smell" value="0"/>
+        </td>
+     </tr>
+
+     <tr>
+		<td align="center" colspan="2">
+			提高项
+		</td>
+	</tr>
+	<tr>
+		<td width="70%">
+        	物品或杂物摆放有序
+        </td>
+        <td width="30%">
+        	是<input type="radio" name="place" value="1" checked/>
+            &nbsp;&nbsp;否<input type="radio" name="place" value="0"/>
+        </td>
+     </tr>
+     	<tr>
+		<td width="70%">
+        	门窗、柜子、墙壁等无污渍
+        </td>
+        <td width="30%">
+        	是<input type="radio" name="door" value="1" checked/>
+            &nbsp;&nbsp;否<input type="radio" name="door" value="0"/>
+        </td>
+     </tr>
+     	<tr>
+		<td width="70%">
+        	卫生间瓷砖、洗脸盆、便池无污渍
+        </td>
+        <td width="30%">
+        	是<input type="radio" name="wc" value="1" checked/>
+            &nbsp;&nbsp;否<input type="radio" name="wc" value="0"/>
+        </td>
+     </tr>
+
+     <tr>
+		<td align="center" colspan="2">
+			违纪项
+		</td>
+	</tr>
+	<tr>
+		<td width="70%">
+        	使用大功率电器
+        </td>
+        <td width="30%">
+        	是<input type="radio" name="power" value="1" />
+            &nbsp;&nbsp;否<input type="radio" name="power" value="0" checked />
+        </td>
+     </tr>
+     	<tr>
+		<td width="70%">
+        	乱接电线
+        </td>
+        <td width="30%">
+        	是<input type="radio" name="line" value="1" />
+            &nbsp;&nbsp;否<input type="radio" name="line" value="0" checked />
+        </td>
+     </tr>
+     	<tr>
+		<td width="70%">
+        	使用液化气灶等明火器具
+        </td>
+        <td width="30%">
+        	是<input type="radio" name="fire" value="1" />
+            &nbsp;&nbsp;否<input type="radio" name="fire" value="0" checked />
+        </td>
+     </tr>
+     <tr>
+     	<td align="center" colspan="2">
+        	正常<input type="radio" name="abuse" value="1" checked/>
+            &nbsp;&nbsp;无人<input type="radio" name="abuse" value="2" />
+     	</td>
+     </tr>
+     <!--
+     <tr>
+     	<td align="center" colspan="2">
+        	总评
+     	</td>
+     </tr>
+     <tr align="center">
+        <td align="center" colspan="2">
+        	优秀<input type="radio" name="rank" value="1" />
+            &nbsp;&nbsp;良好<input type="radio" name="rank" value="2" />
+            &nbsp;&nbsp;合格<input type="radio" name="rank" value="3" />
+            &nbsp;&nbsp;不合格<input type="radio" name="rank" value="4" />
+            &nbsp;&nbsp;无人<input type="radio" name="rank" value="5" />
+     	</td>
+     </tr>
+     -->
+     <tr align="center">
+     	<td colspan="2">
+        	<input type="submit" value="提交" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="reset" value="重置" />
+        </td>
+     </tr>
+</table>
+</form>
+<small>Power By <a href="https://echoiot.com">Echo</a>,<a href="https://tec.hxlxz.com">hxl</a></small>
+</body>
+</html>
