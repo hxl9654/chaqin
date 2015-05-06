@@ -1,4 +1,4 @@
-/**
+<!--
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
  *   the Free Software Foundation, either version 3 of the License, or
@@ -17,7 +17,7 @@
  * @license    http://www.gnu.org/licenses/     GPL v3
  * @version    1.0
  * @discribe   查寝系统管理-查寝开始
- */
+-->
 <?php
 //判断是否有真正进行的查寝（data数据库是否存在），如果有：报错，返回
 $result = mysql_query("select * from data limit 1");

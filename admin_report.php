@@ -1,4 +1,4 @@
-/**
+<!--
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
  *   the Free Software Foundation, either version 3 of the License, or
@@ -17,7 +17,7 @@
  * @license    http://www.gnu.org/licenses/     GPL v3
  * @version    1.0
  * @discribe   查寝系统管理-生成报告
- */
+-->
 <?php
 //如果传入参数（要查询的数据库名）为空：提示，返回
 if($_REQUEST['inf'] == "")
