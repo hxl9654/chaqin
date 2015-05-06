@@ -46,12 +46,15 @@ $depname = array("","信息安全工程学院","光电技术学院","外国语�
 $rankname = array("","优秀","良好","合格","不合格","无人","违纪");
 //输出各学院各等级的寝室列表
 $i = 1;
+echo "<table border='1' cellspacing='0'>";
 while($i <= 12)
 {
     //单独处理学院信息不清的寝室
     if($i == 12)
     {
-        echo "学院信息不清<br/>";
+        echo "<tr>";
+        echo "<th colspan='10'>学院信息不清</th>";
+        echo "</tr>";
         //如果数据库中某寝室的 depdone 值没有被置1（默认为0），则该寝室在数据库中没有对应的学院
         //在数据库中查找这种寝室
         $result = mysql_query("SELECT * FROM db$_REQUEST[inf] WHERE depdone!='1'");
@@ -71,8 +74,9 @@ while($i <= 12)
     else
     {
         //先输出学院的名称
+        echo "<tr><th colspan='10'>";
         echo $depname[$i];
-        echo "<br/>";
+        echo "</th></tr>";
         //在数据库查找该学院所有寝室
         $result = mysql_query("SELECT * FROM inf WHERE dep='$i'");
         $j = 0;
@@ -90,31 +94,37 @@ while($i <= 12)
     while($k < 7)
     {   
         //输出等级名称
+        echo "<tr><td colspan='10' align='center'>";
         echo $rankname[$k];
-        echo "<br/>";
+        echo "</td></tr><tr>";
         $j = 0;
+        $l = 0;
         while($j <= $jmax)
         {
             //查找等级、学院符合本次查找的寝室
-            $result = mysql_query("SELECT * FROM db$_REQUEST[inf] WHERE no='$depinf[$j]' && rank='$k'");
-            $l = 0;
+            $result = mysql_query("SELECT * FROM db$_REQUEST[inf] WHERE no='$depinf[$j]' && rank='$k'");           
             while($row = mysql_fetch_array($result))
             {
-                //每输出7个寝室换一行
-                if($l >= 7)
-                    {
-                        echo "<br/>";
-                        $l = 0;
-                    }
                 //输出带链接（到查询这个寝室的具体信息）的寝室号
-                echo "<a href='lookup.php?no=$row[no]&db=$_REQUEST[inf]' target='_blank'>";
+                echo "<td width='10%'><a href='lookup.php?no=$row[no]&db=$_REQUEST[inf]' target='_blank'>";
                 echo $row['no'];
-                echo "</a>&nbsp;&nbsp;";
-                $l = $l+1;
+                echo "</a>&nbsp;&nbsp;</td>";
+                $l = $l + 1;
+                //每输出10个寝室换一行
+                if($l >= 10)
+                {
+                    echo "</tr><tr>";
+                    $l = 0;
+                }
             }
-            $j = $j+1;
-
+            $j = $j + 1;
         }
+        while($l < 10)
+        {
+            echo "<td width='10%'></td>";
+            $l = $l + 1;
+        }
+        echo "</tr>";
         //如果该寝室不是没有对应学院的寝室
         if($i != 12)
         {
@@ -126,9 +136,10 @@ while($i <= 12)
             $j = $j + 1;
             }
         }
-        echo "<br/>";
         $k = $k + 1;
     }
     $i = $i + 1;
 }
+echo "</table><br/>";
+
 ?>
