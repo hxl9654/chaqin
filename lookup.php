@@ -210,6 +210,6 @@ if($row['rank'] == 5)
      </tr>
 </table>
 <?php mysql_close($con); ?>
-<small>Power By <a href="https://echoiot.com">易控实验室</a>,<a href="https://tec.hxlxz.com">何相龙</a>.<a href="https://github.com/qwgg9654/chaqin">SourceCode</a></small>
+<small>Power By <a href="https://echoiot.com">易控实验室</a>,<a href="https://tec.hxlxz.com">何相龙</a>.<a href="https://github.com/hxl9654/chaqin">SourceCode</a></small>
 </body>
 </html>
