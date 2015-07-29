@@ -54,7 +54,9 @@ function _rowget($str, $row){
 
 //连接数据库
 require 'database.php';
-
+//过滤恶意参数
+$infsql = mysql_real_escape_string($_REQUEST[inf]);
+$infsql = str_ireplace("script","&#115;&#99;&#114;&#105;&#112;&#116;",filter_var($infsql, FILTER_SANITIZE_SPECIAL_CHARS));
 //如果选择的是查寝开始
 if($_REQUEST['todo'] == 1)
 {

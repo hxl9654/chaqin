@@ -31,7 +31,7 @@ if(mysql_fetch_array($result) == "")
      </script> ");
 }
 //判断传入的参数（要保存到的数据表的名字是否为空），是：报错，返回
-if($_REQUEST[inf] == "")
+if($infsql == "")
 {
     mysql_close($con);
     exit( "
@@ -41,7 +41,7 @@ if($_REQUEST[inf] == "")
          </script> ");
 }
 //判断要保存到的数据表的名字是否已存在，是：报错，返回
-$result = mysql_query("select * from $_REQUEST[inf] limit 1");
+$result = mysql_query("select * from $infsql limit 1");
 if(mysql_fetch_array($result) != "")
 {
     mysql_close($con);
@@ -58,7 +58,7 @@ mysql_query($sql, $con);
 mysql_query("CREATE TABLE lastdata SELECT * FROM data");
 mysql_query($sql, $con);
 //将这次的查寝数据（data表）存档到用户自定义的数据表（推荐以日期作为表名）
-mysql_query("RENAME TABLE data TO db$_REQUEST[inf]");
+mysql_query("RENAME TABLE data TO db$infsql");
 mysql_query($sql, $con);
 //搞定：提示，返回主界面
 mysql_close($con);

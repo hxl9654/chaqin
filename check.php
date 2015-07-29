@@ -80,8 +80,19 @@ if(mysql_fetch_array($result) == "")
      window.location.href='admin.html';
      </script> ");
 }
+//对获取的参数进行强制转换，过滤恶意数据
+$nosql = mysql_real_escape_string($_REQUEST['no']);
+$nosql = str_ireplace("script","&#115;&#99;&#114;&#105;&#112;&#116;",filter_var($nosql, FILTER_SANITIZE_SPECIAL_CHARS));
+$passsql = mysql_real_escape_string($_REQUEST[pass]);
+
+if(($_REQUEST['bed'] != 0 && $_REQUEST['bed'] != 1)||($_REQUEST['bin'] != 0 && $_REQUEST['bin'] != 1)||($_REQUEST['floor'] != 0 && $_REQUEST['floor'] != 1)||($_REQUEST['smell'] != 0 && $_REQUEST['smell'] != 1)||($_REQUEST['place'] != 0 && $_REQUEST['place'] != 1)||($_REQUEST['door'] != 0 && $_REQUEST['door'] != 1)||($_REQUEST['wc'] != 0 && $_REQUEST['wc'] != 1)||($_REQUEST['power'] != 0 && $_REQUEST['power'] != 1)||($_REQUEST['line'] != 0 && $_REQUEST['line'] != 1)||($_REQUEST['fire'] != 0 && $_REQUEST['fire'] != 1))
+   exit("
+     <script language=javascript>
+     alert('参数错误');
+     window.location.href='admin.html';
+     </script> ");
 //验证密码，错误：提示，返回
-$result = mysql_query("select pass from pass where pass = '$_REQUEST[pass]' limit 1");
+$result = mysql_query("select pass from pass where pass = '$passsql' limit 1");
 if(mysql_fetch_array($result) == "")
 {
     mysql_close($con);
@@ -92,7 +103,7 @@ if(mysql_fetch_array($result) == "")
 	 </script> ");
 }
 //判断当前寝室是否已有数据，是：提示，返回
-$result = mysql_query("select * from data where no = '$_REQUEST[no]' limit 1");
+$result = mysql_query("select * from data where no = '$nosql' limit 1");
 if(mysql_fetch_array($result) != "")
 {
     mysql_close($con);
@@ -114,7 +125,7 @@ if($_REQUEST['no'] == "")
 }
 //查询当前操作密码对应的操作者
 mysql_query("set character set 'utf8'");
-$sql = "SELECT * FROM pass WHERE pass = '$_REQUEST[pass]' ";
+$sql = "SELECT * FROM pass WHERE pass = '$passsql' ";
 $result = mysql_query($sql);
 $row = mysql_fetch_array($result);
 
@@ -137,7 +148,7 @@ $ipaddr = get_real_ip();
 //向数据库写数据
 $sql = "INSERT INTO data (no, bed, bin, floor, smell, place, door, wc, power, line, fire, rank, user, ipaddr, depdone)
 VALUES
-('$_REQUEST[no]','$_REQUEST[bed]','$_REQUEST[bin]','$_REQUEST[floor]','$_REQUEST[smell]','$_REQUEST[place]','$_REQUEST[door]','$_REQUEST[wc]','$_REQUEST[power]','$_REQUEST[line]','$_REQUEST[fire]','$rank','$username','$ipaddr','0')";
+('$nosql','$_REQUEST[bed]','$_REQUEST[bin]','$_REQUEST[floor]','$_REQUEST[smell]','$_REQUEST[place]','$_REQUEST[door]','$_REQUEST[wc]','$_REQUEST[power]','$_REQUEST[line]','$_REQUEST[fire]','$rank','$username','$ipaddr','0')";
 
 if (!mysql_query($sql, $con))
 {

@@ -47,7 +47,7 @@ if(mysql_fetch_array($result) == "")
 }
 mysql_query($sql, $con);
 //获取传入的用户名
-$username = $_REQUEST[inf];
+$username = $infsql;
 //判断输入的用户名是否已经存在，是：提示，返回
 $result = mysql_query("select * from pass where username = '$username' limit 1");
 if(mysql_fetch_array($result) != "")

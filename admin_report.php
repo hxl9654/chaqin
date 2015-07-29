@@ -20,7 +20,7 @@
 -->
 <?php
 //如果传入参数（要查询的数据库名）为空：提示，返回
-if($_REQUEST['inf'] == "")
+if($infsql == "")
 {
     mysql_close($con);
     exit( "
@@ -30,7 +30,7 @@ if($_REQUEST['inf'] == "")
          </script> ");
 }
 //如果要查询的数据库名不存在：提示，返回
-$result = mysql_query("select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_NAME='db$_REQUEST[inf]' ;");
+$result = mysql_query("select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_NAME='db$infsql' ;");
 if(mysql_fetch_array($result) == "")
 {
     mysql_close($con);
@@ -57,7 +57,7 @@ while($i <= 12)
         echo "</tr>";
         //如果数据库中某寝室的 depdone 值没有被置1（默认为0），则该寝室在数据库中没有对应的学院
         //在数据库中查找这种寝室
-        $result = mysql_query("SELECT * FROM db$_REQUEST[inf] WHERE depdone!='1'");
+        $result = mysql_query("SELECT * FROM db$infsql WHERE depdone!='1'");
         $j = 0;
         //清空缓存数组
         unset($depinf);
@@ -102,11 +102,11 @@ while($i <= 12)
         while($j <= $jmax)
         {
             //查找等级、学院符合本次查找的寝室
-            $result = mysql_query("SELECT * FROM db$_REQUEST[inf] WHERE no='$depinf[$j]' && rank='$k'");           
+            $result = mysql_query("SELECT * FROM db$infsql WHERE no='$depinf[$j]' && rank='$k'");           
             while($row = mysql_fetch_array($result))
             {
                 //输出带链接（到查询这个寝室的具体信息）的寝室号
-                echo "<td width='10%'><a href='lookup.php?no=$row[no]&db=$_REQUEST[inf]' target='_blank'>";
+                echo "<td width='10%'><a href='lookup.php?no=$row[no]&db=$infsql' target='_blank'>";
                 echo $row['no'];
                 echo "</a>&nbsp;&nbsp;</td>";
                 $l = $l + 1;
@@ -132,7 +132,7 @@ while($i <= 12)
             $j = 0;
             while($j <= $jmax)
             {
-            mysql_query("UPDATE db$_REQUEST[inf] SET depdone = '1' WHERE no = '$depinf[$j]'");
+            mysql_query("UPDATE db$infsql SET depdone = '1' WHERE no = '$depinf[$j]'");
             $j = $j + 1;
             }
         }
